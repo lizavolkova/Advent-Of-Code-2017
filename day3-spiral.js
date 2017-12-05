@@ -14,30 +14,17 @@ let stepsIteration = 1;
 let directionIndex = 0;
 const directions = ['right', 'up', 'left', 'down'];
 let numberTimesRun = 0;
+let finalValue;
 
 const getKeys = (object, value) => {
-    const test = _.findKey(object, (point) => {
+    const test = _.find(object, (point) => {
         return point.coords.toString() === value.toString()
     })
 
-    return test ? parseInt(test) : 0;
-    // const pointValue = Object.keys(object).map((key, val) => {
-    //     const point = object[key];
-    //
-    //     if (point && point.coords.toString() === value.toString()) {
-    //         console.log('match!')
-    //         return parseInt(point.value)
-    //     } else {
-    //         console.log('no match')
-    //         return parseInt(0);
-    //     }
-    // })
-    //
-    // console.log('val', pointValue)
-    // return parseInt(pointValue)
+    return test ? parseInt(test.value) : 0;
 }
 
-for (let i = 2; i < 6; i++) {
+for (let i = 2; i < 265149; i++) {
     const length = i - 1;
     const currentPoint = points[length].coords
     const currentX = currentPoint[0];
@@ -88,7 +75,6 @@ for (let i = 2; i < 6; i++) {
     const p8 = [newPoint[0] - 1, newPoint[1] + 1];
 
     const pointSum = getKeys(points, p1) + getKeys(points, p2) + getKeys(points, p3) + getKeys(points, p4) + getKeys(points, p5) + getKeys(points, p6) + getKeys(points, p7) + getKeys(points, p8);
-    console.log('sum', pointSum);
     // console.log(points.getKey(p2));
     // console.log(points.getKey(p3));
     // console.log(points.getKey(p4));
@@ -96,8 +82,12 @@ for (let i = 2; i < 6; i++) {
     // console.log(points.getKey(p6));
     // console.log(points.getKey(p7));
     // console.log(points.getKey(p8));
-console.log('------------------------------');
+
     // console.log(p1, p2, p3, p4, p5, p6, p7, p8);
+    if (pointSum > 265149) {
+        finalValue = pointSum
+        break;
+    }
     points[i] = {
         coords: newPoint,
         value: pointSum
@@ -116,7 +106,8 @@ console.log('------------------------------');
     //if (i=12) then steps= 2, direction = 'up', length = 11 directions[1] max = 3 , iteration = 2, numberTimesRun = 1
     //if (i=13) then steps= 1, direction = 'up', length = 12 directions[1] max = 3, iteration = 3, numberTimesRun = 1
 }
-console.log(points)
+//console.log(points)
+console.log(finalValue)
 
 // const origin = [0,0];
 // const point = points[265149];
