@@ -515,9 +515,11 @@ const input2 = `abcde fghij
 abcde xyz ecdab
 a ab abc abd abf abj
 iiii oiii ooii oooi oooo
-oiii ioii iioi iiio`;
+oiii ioii iioi iiio
+xlnuhn oljaf fljao ascxez fojal
+dprclb fzn wgauz rxewtp cjrlgz zfn`;
 
-const passphrases = input2.split('\n');
+const passphrases = input.split('\n');
 let validPhrases = 0;
 
 function checkIfArrayIsUnique(myArray) {
@@ -531,6 +533,8 @@ const isAnagram = (string1, string2) => {
     return string1 === string2;
 }
 
+const anagramArrays = [];
+
 passphrases.forEach((phrase) => {
     const array = phrase.split(' ');
 
@@ -539,9 +543,30 @@ passphrases.forEach((phrase) => {
     //     validPhrases++
     // }
 
-    array.forEach((word, i) => {
-        console.log(array.indexOf(word), i)
-    })
-})
+    // array.forEach((word) => {
+    //
+    //   for (let i = 0; i < array.length; i++) {
+    //     if (array[i] !== word && isAnagram(array[i], word)) {
+    //       anagramArrays.push(array)
+    //     }
+    //   }
+    // })
 
+    const mappedArray = array.map((word) => {
+      return word.split('').sort().join('');
+    })
+
+    if (checkIfArrayIsUnique(mappedArray)) {
+        validPhrases++
+    }
+
+})
+console.log(validPhrases)
+// const testSet = new Set(anagramArrays);
+// console.log( passphrases.length, testSet.size)
+// const invalidPhrases = anagramArrays.length;
+// const validPhrases = passphrases.length - invalidPhrases;
+//
+// console.log(anagramArrays)
+// console.log(anagramArrays.length, passphrases.length)
 // console.log(validPhrases)
